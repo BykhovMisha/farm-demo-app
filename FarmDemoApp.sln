@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FarmDemoApp.API.Tests", "Fa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FarmDemoApp.DataAccess.Tests", "FarmDemoApp.DataAccess.Tests\FarmDemoApp.DataAccess.Tests.csproj", "{71254087-322B-4874-A261-E8D3D3928B0A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FarmDemoApp.BL.Tests", "FarmDemoApp.BL.Tests\FarmDemoApp.BL.Tests.csproj", "{34262BE1-EE41-401C-AC64-093F99B32B35}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +54,10 @@ Global
 		{71254087-322B-4874-A261-E8D3D3928B0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71254087-322B-4874-A261-E8D3D3928B0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71254087-322B-4874-A261-E8D3D3928B0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34262BE1-EE41-401C-AC64-093F99B32B35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34262BE1-EE41-401C-AC64-093F99B32B35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34262BE1-EE41-401C-AC64-093F99B32B35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34262BE1-EE41-401C-AC64-093F99B32B35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +65,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{2380CBF8-FFB3-4898-B566-63D93323DC41} = {70DEC213-B9CC-4C54-8AFF-DEBCE6A97265}
 		{71254087-322B-4874-A261-E8D3D3928B0A} = {70DEC213-B9CC-4C54-8AFF-DEBCE6A97265}
+		{34262BE1-EE41-401C-AC64-093F99B32B35} = {70DEC213-B9CC-4C54-8AFF-DEBCE6A97265}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CBBDDBF2-9F30-4744-B7B6-493199A212E0}

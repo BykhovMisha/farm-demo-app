@@ -9,5 +9,5 @@ public class GetAnimalPageQuery : IRequest<PageModel<AnimalModel>>
 
     public int Skip { get; init; }
 
-    public string Name { get; init; } = string.Empty;
+    public string? Name { get; init; }
 }

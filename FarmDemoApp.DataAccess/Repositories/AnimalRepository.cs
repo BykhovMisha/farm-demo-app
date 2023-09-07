@@ -16,7 +16,7 @@ public class AnimalRepository : IAnimalRepository
         _context = context;
     }
 
-    public async Task<PageEntity<AnimalDto>> GetPage(int skip, int take, string name, CancellationToken cancellationToken = default)
+    public async Task<PageDto<AnimalDto>> GetPage(int skip, int take, string? name, CancellationToken cancellationToken = default)
     {
         _context.SaveChanges();
         var query = _context.Animals.AsNoTracking();
@@ -37,7 +37,7 @@ public class AnimalRepository : IAnimalRepository
             })
             .ToListAsync(cancellationToken);
 
-        return new PageEntity<AnimalDto>
+        return new PageDto<AnimalDto>
         {
             TotalCount = count,
             Items = items

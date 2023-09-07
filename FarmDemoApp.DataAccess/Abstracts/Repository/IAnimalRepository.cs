@@ -5,7 +5,7 @@ namespace FarmDemoApp.DataAccess.Abstracts.Repository;
 
 public interface IAnimalRepository
 {
-    public Task<PageEntity<AnimalDto>> GetPage(int skip, int take, string name, CancellationToken cancellationToken = default);
+    public Task<PageDto<AnimalDto>> GetPage(int skip, int take, string? name, CancellationToken cancellationToken = default);
 
     public Task CreateOrUpdate(AnimalDto animal);
 

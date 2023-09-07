@@ -1,9 +1,12 @@
 using FarmDemoApp.BL.Handlers.Animal;
+using FarmDemoApp.BL.Validators.Animal;
 using FarmDemoApp.DataAccess;
 using FarmDemoApp.DataAccess.Abstracts.Repository;
 using FarmDemoApp.DataAccess.Entities;
 using FarmDemoApp.DataAccess.Repositories;
+using FluentValidation;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,11 +29,15 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
+        // DataAccess Services
         builder.Services.AddDbContext<FarmContext>(options =>
         {
             options.UseInMemoryDatabase("FarmDb");
         });
         builder.Services.AddScoped<IAnimalRepository, AnimalRepository>();
+
+        // BL Services
+        builder.Services.AddValidatorsFromAssemblyContaining<GetAnimalPageQueryValidator>();
 
         builder.Services.AddMediatR(option =>
         {

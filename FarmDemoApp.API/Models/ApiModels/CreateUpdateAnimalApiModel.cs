@@ -1,4 +1,4 @@
-﻿namespace FarmDemoApp.API.ApiModels
+﻿namespace FarmDemoApp.API.Models.ApiModels
 {
     public class CreateUpdateAnimalApiModel
     {

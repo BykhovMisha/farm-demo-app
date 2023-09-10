@@ -1,4 +1,5 @@
-﻿using FarmDemoApp.API.ApiModels;
+﻿using FarmDemoApp.API.Models.ApiModels;
+using FarmDemoApp.API.Models.MiddlewareModels;
 using FarmDemoApp.BL;
 using FarmDemoApp.BL.Handlers.Animal;
 using FarmDemoApp.BL.Models.Common;
@@ -21,17 +22,17 @@ public class AnimalController : ControllerBase
 
     [HttpGet]
     [ProducesResponseType(typeof(PageModel<AnimalModel>), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> GetAnimals([FromQuery] GetVisitsApiModel model)
+    [ProducesResponseType(typeof(FarmValidationProblemDetails), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> GetAnimals([FromQuery] GetVisitsApiModel model, CancellationToken cancellationToken)
     {
         var query = new GetAnimalPageQuery { Take = model.Take, Name = model.Name, Skip = model.Skip };
-        var result = await _sender.Send(query);
+        var result = await _sender.Send(query, cancellationToken);
         return Ok(result);
     }
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(FarmValidationProblemDetails), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateAnimal([FromBody] CreateUpdateAnimalApiModel model)
     {
         var command = new CreateAnimalCommand { Name = model.Name };
@@ -42,7 +43,7 @@ public class AnimalController : ControllerBase
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(FarmValidationProblemDetails), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> UpdateAnimal(int id, [FromBody]CreateUpdateAnimalApiModel model)
     {
         var commad = new UpdateAnimalCommand { Id = id, Name = model.Name };

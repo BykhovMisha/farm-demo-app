@@ -12,7 +12,7 @@ public class GetAnimalPageQueryValidator : AbstractValidator<GetAnimalPageQuery>
             .WithMessage("Skip should be greater than or equal to 0");
 
         RuleFor(x => x.Take)
-            .ExclusiveBetween(1, 100)
+            .InclusiveBetween(1, 100)
             .WithMessage("Take should be from 1 to 100");
 
         RuleFor(x => x.Name)

@@ -1,3 +1,5 @@
+using FarmDemoApp.API.Middlewares;
+using FarmDemoApp.API.Models.MiddlewareModels;
 using FarmDemoApp.BL.Handlers.Animal;
 using FarmDemoApp.BL.Validators.Animal;
 using FarmDemoApp.DataAccess;
@@ -19,6 +21,19 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+
+
+        builder.Services.AddCors(options =>
+        {
+            var corsOrigin = builder.Configuration.GetSection("Cors:Origin").Get<string>()!;
+
+            options.AddDefaultPolicy(policyBuilder =>
+            {
+                policyBuilder.WithOrigins(corsOrigin)
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
+        });
 
         builder.Services.AddControllers(options =>
         {
@@ -44,6 +59,8 @@ public class Program
             option.RegisterServicesFromAssemblyContaining<GetAnimalPageQuery>();
         });
 
+        builder.Services.AddTransient<ValidationResponseMiddleware>();
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -53,6 +70,9 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+
+        app.UseMiddleware<ValidationResponseMiddleware>();
+        app.UseCors();
 
         app.UseAuthorization();
         app.MapControllers();
@@ -68,6 +88,10 @@ public class Program
             {
                 new() { Name = "Cow" },
                 new() { Name = "Pig" },
+                new() { Name = "Horse" },
+                new() { Name = "Duck" },
+                new() { Name = "Cock" },
+                new() { Name = "Sheep" },
             });
             dbContext.SaveChanges();
         }

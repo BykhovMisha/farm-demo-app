@@ -1,6 +1,6 @@
 ﻿using AutoFixture;
-using FarmDemoApp.API.ApiModels;
 using FarmDemoApp.API.Controllers;
+using FarmDemoApp.API.Models.ApiModels;
 using FarmDemoApp.BL;
 using FarmDemoApp.BL.Handlers.Animal;
 using FarmDemoApp.BL.Models.Common;
@@ -26,7 +26,7 @@ public class AnimalControllerTests
         sender.Send(Arg.Any<GetAnimalPageQuery>()).Returns(queryResult);
 
         // Act
-        var result = await controller.GetAnimals(queryModel);
+        var result = await controller.GetAnimals(queryModel, CancellationToken.None);
 
         // Assert
         result.Should().BeOfType<OkObjectResult>();
